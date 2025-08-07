@@ -1,17 +1,17 @@
 ﻿function init_life_time() {
     function getAsideLifeTime() {
-        /* 当前时间戳 */
+        /* 當前的時間軸 */
         let nowDate = +new Date();
-        /* 今天开始时间戳 */
+        /* 今天開始的時間軸 */
         let todayStartDate = new Date(new Date().toLocaleDateString()).getTime();
-        /* 今天已经过去的时间 */
+        /* 今天已經過去的時間 */
         let todayPassHours = (nowDate - todayStartDate) / 1000 / 60 / 60;
-        /* 今天已经过去的时间比 */
+        /* 今天已經過去的時間比 */
         let todayPassHoursPercent = (todayPassHours / 24) * 100;
         $('#dayProgress .date-text span').html(parseInt(todayPassHours));
         $('#dayProgress .progress .progress-bar').css('width', parseInt(todayPassHoursPercent) + '%');
         $('#dayProgress .progress .progress-bar').html(parseInt(todayPassHoursPercent) + '%');
-        /* 当前周几 */
+        /* 當前周幾 */
         let weeks = {
             0: 7,
             1: 1,

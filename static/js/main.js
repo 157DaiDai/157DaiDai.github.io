@@ -58,13 +58,13 @@ window.addEventListener(
       "transform: scale(1) !important;opacity: 1 !important;filter: blur(0px) !important"
     );
 
-    //用户欢迎
+    //用户歡迎
     setTimeout(function () {
       iziToast.show({
         timeout: 2500,
         icon: false,
         title: hello,
-        message: "欢迎来到我的主页",
+        message: "歡迎來到我的網頁",
       });
     }, 800);
 
@@ -91,7 +91,7 @@ window.addEventListener(
 );
 
 setTimeout(function () {
-  $("#loading-text").html("字体及文件加载可能需要一定时间");
+  $("#loading-text").html("字體及文件家仔可能需要一定時間呦");
 }, 3000);
 
 // 新春灯笼 （ 需要时可取消注释 ）
@@ -136,14 +136,14 @@ $("#hitokoto").click(function () {
     iziToast.show({
       timeout: 1000,
       icon: "fa-solid fa-circle-exclamation",
-      message: "点击太快了哦",
+      message: "點擊太快了哦",
     });
   }
 });
 
-// 获取天气
-// 请前往 https://www.mxnzp.com/doc/list 申请 app_id 和 app_secret
-const mainKey = "c577e8a40049cf51879ff72c9dc1ae8e"; // 高德开发者 Key
+// 獲取天氣
+// 請前往 https://www.mxnzp.com/doc/list 申請 app_id 和 app_secret
+const mainKey = "c577e8a40049cf51879ff72c9dc1ae8e"; // 高德開發者 Key
 const getWeather = () => {
   fetch(`https://restapi.amap.com/v3/ip?key=${mainKey}`)
     .then((response) => response.json())
@@ -158,24 +158,24 @@ const getWeather = () => {
           if (res.status) {
             $("#wea_text").html(res.lives[0].weather);
             $("#tem_text").html(res.lives[0].temperature + "°C&nbsp;");
-            $("#win_text").html(res.lives[0].winddirection + "风");
-            $("#win_speed").html(res.lives[0].windpower + "级");
+            $("#win_text").html(res.lives[0].winddirection + "風");
+            $("#win_speed").html(res.lives[0].windpower + "級");
           } else {
-            console.error("天气信息获取失败");
+            console.error("天氣資訊獲取失敗");
             iziToast.show({
               timeout: 2000,
               icon: "fa-solid fa-cloud-sun",
-              message: "天气信息获取失败",
+              message: "天氣資訊獲取失敗",
             });
           }
         });
     })
     .catch((err) => {
-      console.error("天气信息获取失败：" + err);
+      console.error("天氣資訊獲取失敗：" + err);
       iziToast.show({
         timeout: 2000,
         icon: "fa-solid fa-cloud-sun",
-        message: "天气信息获取失败",
+        message: "天氣資訊獲取失敗",
       });
     });
 };
@@ -196,18 +196,18 @@ $("#upWeather").click(function () {
     iziToast.show({
       timeout: 2000,
       icon: "fa-solid fa-cloud-sun",
-      message: "实时天气已更新",
+      message: "實時天氣已更新",
     });
   } else {
     iziToast.show({
       timeout: 1000,
       icon: "fa-solid fa-circle-exclamation",
-      message: "请稍后再更新哦",
+      message: "請稍後再更新歐",
     });
   }
 });
 
-//获取时间
+//獲取時間
 let t = null;
 t = setTimeout(time, 1000);
 
@@ -260,7 +260,7 @@ function time() {
   t = setTimeout(time, 1000);
 }
 
-//链接提示文字
+//鏈接提示文字
 $("#social")
   .mouseover(function () {
     $("#social").css({
@@ -288,14 +288,14 @@ $("#github")
     $("#link-text").html("去 Github 看看");
   })
   .mouseout(function () {
-    $("#link-text").html("通过这里联系我");
+    $("#link-text").html("想知道我網站的程式碼來這邊呦");
   });
-$("#qq")
+$("#instagram")
   .mouseover(function () {
-    $("#link-text").html("有什么事吗");
+    $("#link-text").html("尼瑟瑟！！");
   })
   .mouseout(function () {
-    $("#link-text").html("通过这里联系我");
+    $("#link-text").html("通過這裡聯絡我");
   });
 $("#email")
   .mouseover(function () {
@@ -319,11 +319,11 @@ $("#telegram")
     $("#link-text").html("通过这里联系我");
   });
 
-//自动变灰
+//自動變灰
 let myDate = new Date();
 let mon = myDate.getMonth() + 1;
 let date = myDate.getDate();
-let days = ["4.4", "5.12", "7.7", "9.9", "9.18", "12.13"];
+let days = ["2.28", "10.10", "10.25", "1.1"];
 for (let day of days) {
   let d = day.split(".");
   if (mon == d[0] && date == d[1]) {
@@ -331,7 +331,7 @@ for (let day of days) {
       "<style>html{-webkit-filter:grayscale(100%);-moz-filter:grayscale(100%);-ms-filter:grayscale(100%);-o-filter:grayscale(100%);filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);_filter:none}</style>"
     );
     $("#change").html("Silence&nbsp;in&nbsp;silence");
-    $("#change1").html("今天是中国国家纪念日，全站已切换为黑白模式");
+    $("#change1").html("今天是臺灣的國家紀念日，網頁已切換為黑白模式");
     window.addEventListener(
       "load",
       function () {
@@ -339,7 +339,7 @@ for (let day of days) {
           iziToast.show({
             timeout: 14000,
             icon: "fa-solid fa-clock",
-            message: "今天是中国国家纪念日",
+            message: "今天是臺灣的國家紀念日",
           });
         }, 3800);
       },
@@ -348,22 +348,22 @@ for (let day of days) {
   }
 }
 
-//更多页面切换
+//更多頁面切換
 let shoemore = false;
 $("#switchmore").on("click", function () {
   shoemore = !shoemore;
   if (shoemore && $(document).width() >= 990) {
     $("#container").attr("class", "container mores");
     $("#change").html("Oops&nbsp;!");
-    $("#change1").html("哎呀，这都被你发现了（ 再点击一次可关闭 ）");
+    $("#change1").html("哎呀，這都被發現了（ 再點及一次即可關閉 ）");
   } else {
     $("#container").attr("class", "container");
-    $("#change").html("Hello&nbsp;World&nbsp;!");
-    $("#change1").html("一个不正经的Up");
+    $("#change").html("Welcome&nbsp;to&nbsp;mine&nbsp;website&nbsp;!!");
+    $("#change1").html("默默關注你的呆呆　　｜　　IG: daidai_0618");
   }
 });
 
-//更多页面关闭按钮
+//更多頁面關閉按鈕
 $("#close").on("click", function () {
   $("#switchmore").click();
 });
@@ -439,15 +439,58 @@ $("#more").hover(
   }
 );
 
-//屏蔽右键
-document.oncontextmenu = function () {
+//禁止一切進入console的方法
+// 設置時間限制（毫秒）
+const timeLimit = 3000; // 3秒
+let lastTriggered = 0; // 上次觸發的時間
+
+// 禁止右鍵菜單和開發者工具
+function preventActions(event) {
+  const currentTime = new Date().getTime(); // 當前時間
+
+  // 檢查是否已經過了時間限制
+  if (currentTime - lastTriggered > timeLimit) {
+    showWarning();
+    lastTriggered = currentTime; // 更新上次觸發的時間
+  }
+
+  // 禁止右鍵菜單
+  if (event.type === "contextmenu") {
+    return false; // 阻止右鍵菜單
+  }
+
+  // 禁止 F12 鍵
+  if (event.key === "F12") {
+    event.preventDefault();
+    return false;
+  }
+
+  // 禁止 Ctrl+Shift+I 鍵
+  if (event.ctrlKey && event.shiftKey && event.key === "I") {
+    event.preventDefault();
+    return false;
+  }
+
+  // 禁止 Ctrl+U 鍵（查看源代碼）
+  if (event.ctrlKey && event.key === "U") {
+    event.preventDefault();
+    return false;
+  }
+}
+
+// 顯示警告訊息的函數
+function showWarning() {
   iziToast.show({
     timeout: 2000,
     icon: "fa-solid fa-circle-exclamation",
-    message: "为了浏览体验，本站禁用右键",
+    message: "嘻嘻～不可以壞壞呦！！",
   });
-  return false;
-};
+}
+
+// 監聽事件
+document.oncontextmenu = preventActions; // 禁止右鍵菜單
+document.onkeydown = preventActions; // 禁止開發者工具
+
 
 //控制台输出
 //console.clear();

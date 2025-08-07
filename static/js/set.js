@@ -16,7 +16,7 @@ function setBgImg(bg_img) {
   return false;
 }
 
-// 获取背景图片 Cookies
+// 獲取背景圖片 Cookies
 function getBgImg() {
   let bg_img_local = Cookies.get("bg_img");
   if (bg_img_local && bg_img_local !== "{}") {
