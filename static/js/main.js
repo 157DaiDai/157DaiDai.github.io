@@ -5,6 +5,8 @@ GitHub：https://github.com/imsyy/home
 版权所有，请勿删除
 */
 
+
+
 //弹窗样式
 iziToast.settings({
   timeout: 10000,
@@ -106,15 +108,29 @@ setTimeout(function () {
 // new_element.setAttribute("src","./js/lantern.js");
 // document.body.appendChild(new_element);
 
-//获取一言
-fetch("https://v1.hitokoto.cn?max_length=24")
-  .then((response) => response.json())
-  .then((data) => {
-    $("#hitokoto_text").html(data.hitokoto);
-    $("#from_text").html(data.from);
-  })
-  .catch(console.error);
+// 簡體到繁體的轉換函數（示例）
+function simplifyToTraditional(text) {
+  const conversionMap = {
+    "当": "當",
+    "你": "你",
+    "手": "手",
+    "里": "裡",
+    "有": "有",
+    "锤": "錘",
+    "子": "子",
+    "那么": "那麼",
+    "敌人": "敵人",
+    "就是": "就是",
+    "钉子": "釘子",
+    "守望先锋": "守望先鋒"
+    // 添加更多的簡繁對應
+  };
+  return text.replace(/[\u4e00-\u9fa5]/g, (char) => conversionMap[char] || char);
+}
 
+
+
+//獲取一言（中國有一個叫做"一言"的網站，網站主要提供一句話服務。）
 let times = 0;
 $("#hitokoto").click(function () {
   if (times == 0) {
@@ -125,13 +141,25 @@ $("#hitokoto").click(function () {
         clearInterval(index);
       }
     }, 1000);
+
+    // 引入 OpenCC
+    const converter = OpenCC.Converter({ from: 's2t', to: 't2s' }); // s2t: 簡體到繁體
+
     fetch("https://v1.hitokoto.cn?max_length=24")
       .then((response) => response.json())
       .then((data) => {
-        $("#hitokoto_text").html(data.hitokoto);
-        $("#from_text").html(data.from);
+        // 確保 data.hitokoto 存在
+        if (data && data.hitokoto) {
+          const traditionalHitokoto = converter.convert(data.hitokoto); // 轉換為繁體中文
+          $("#hitokoto_text").html(traditionalHitokoto);
+          $("#from_text").html(data.from);
+        } else {
+          console.error("未獲取到有效的 hitokoto");
+        }
       })
-      .catch(console.error);
+      .catch((error) => {
+        console.error("獲取 hitokoto 時出錯:", error);
+      });
   } else {
     iziToast.show({
       timeout: 1000,
@@ -140,6 +168,8 @@ $("#hitokoto").click(function () {
     });
   }
 });
+
+
 
 // 獲取天氣
 // 請前往 https://www.mxnzp.com/doc/list 申請 app_id 和 app_secret
@@ -283,13 +313,6 @@ $("#social")
     });
   });
 
-$("#github")
-  .mouseover(function () {
-    $("#link-text").html("去 Github 看看");
-  })
-  .mouseout(function () {
-    $("#link-text").html("想知道我網站的程式碼來這邊呦");
-  });
 $("#instagram")
   .mouseover(function () {
     $("#link-text").html("尼瑟瑟！！");
@@ -297,28 +320,34 @@ $("#instagram")
   .mouseout(function () {
     $("#link-text").html("通過這裡聯絡我");
   });
-$("#email")
+$("#tiktok")
   .mouseover(function () {
-    $("#link-text").html("来封 Email");
+    $("#link-text").html("來關注我呦");
   })
   .mouseout(function () {
-    $("#link-text").html("通过这里联系我");
+    $("#link-text").html("有時在這開直播");
   });
-$("#bilibili")
+$("#steam")
   .mouseover(function () {
-    $("#link-text").html("来 B 站看看 ~");
+    $("#link-text").html("來找我玩遊戲");
   })
   .mouseout(function () {
-    $("#link-text").html("通过这里联系我");
+    $("#link-text").html("加好友請加備註");
   });
-$("#telegram")
+$("#dragon")
   .mouseover(function () {
-    $("#link-text").html("你懂的 ~");
+    $("#link-text").html("PlayOne");
   })
   .mouseout(function () {
-    $("#link-text").html("通过这里联系我");
+    $("#link-text").html("要找我下單呦！");
   });
-
+$("#nicee")
+  .mouseover(function () {
+    $("#link-text").html("Nicee");
+  })
+  .mouseout(function () {
+    $("#link-text").html("要找我下單呦！");
+  });
 //自動變灰
 let myDate = new Date();
 let mon = myDate.getMonth() + 1;
@@ -407,8 +436,8 @@ window.addEventListener("load", function () {
     if (window.innerWidth <= 990) {
       //移动端隐藏更多页面
       $("#container").attr("class", "container");
-      $("#change").html("Hello&nbsp;World&nbsp;!");
-      $("#change1").html("一个不正经的Up");
+      $("#change").html("Welcome&nbsp;to&nbsp;mine&nbsp;website&nbsp;!!");
+      $("#change1").html("默默關注你的呆呆　　｜　　IG: daidai_0618");
 
       //移动端隐藏弹窗页面
       $("#box").css("display", "none");

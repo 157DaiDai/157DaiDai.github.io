@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>Hitokoto 繁體語錄</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      text-align: center;
+      padding-top: 100px;
+      background-color: #f9f9f9;
+    }
+    #quote {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    #source {
+      font-size: 16px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div id="quote">載入中...</div>
+  <div id="source"></div>
+
+  <script>
+    fetch('https://v1.hitokoto.cn?c=a&c=b&c=c&c=d&c=e&c=f&c=g')
+      .then(response => response.json())
+      .then(data => {
+        const fullText = `${data.hitokoto} —— ${data.from}`;
+        return fetch(`https://api.zhconvert.org/convert?text=${encodeURIComponent(fullText)}&converter=Traditional`)
+          .then(res => res.json());
+      })
+      .then(result => {
+        const [quote, source] = result.data.text.split(' —— ');
+        document.getElementById('quote').textContent = quote;
+        document.getElementById('source').textContent = `—— ${source}`;
+      })
+      .catch(error => {
+        document.getElementById('quote').textContent = '載入失敗，請稍後再試。';
+        console.error('錯誤:', error);
+      });
+  </script>
+</body>
+</html>
