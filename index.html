@@ -34,6 +34,8 @@
     <link rel="stylesheet" href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/izitoast/1.4.0/css/iziToast.min.css">
     <script type="text/javascript" src="static/js/iziToast.min.js">
     </script>
+    <!-- OpenCC 簡繁轉換 -->
+    <script src="https://cdn.jsdelivr.net/npm/opencc-js@1.0.5/dist/umd/full.min.js"></script>
     <!-- Search Box -->
     <!--
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -77,11 +79,12 @@
         <!-- 背景图片 -->
         <style type="text/css">
             body{
-              background: url("static/image/background1.png") no-repeat center center fixed;
+              background: url("./static/image/background1.png") no-repeat center center fixed !important;
                           /*兼容浏览器版本*/
-                          -webkit-background-size: cover;
-                          -o-background-size: cover;                
-                          background-size: cover;
+                          -webkit-background-size: cover !important;
+                          -o-background-size: cover !important;                
+                          background-size: cover !important;
+                          background-color: #333 !important;
             } /*背景图*/
        
             .test {
@@ -211,8 +214,7 @@
                                         <div class="hitokoto-all">
                                             <div class="hitokoto-text"><span id="hitokoto_text">一個不正經的呆呆</span>
                                             </div>
-                                            <div class="hitokoto-from">-「&nbsp;<span id="from_text">呆呆</span>&nbsp;」
-                                            </div>
+                                            <div class="hitokoto-from">-「&nbsp;<span id="from_text">呆呆</span>&nbsp;」</div>
                                         </div>
                                     </div>
                                     <!--音樂-->
@@ -490,10 +492,10 @@
                                                     <i class="fa-solid fa-circle-plus"></i>&nbsp;音樂歌單支持快速自定義
                                                 </span>
                                                 <span class="uptext">
-                                                    <i class="fa-solid fa-circle-plus"></i>&nbsp;壁纸支持個性化設置
+                                                    <i class="fa-solid fa-plus-circle"></i>&nbsp;壁纸支持個性化設置
                                                 </span>
                                                 <span class="uptext">
-                                                    <i class="fa-solid fa-circle-plus"></i>&nbsp;音樂播放器支持音量控制
+                                                    <i class="fa-solid fa-plus-circle"></i>&nbsp;音樂播放器支持音量控制
                                                 </span>
                                                 <span class="uptext">
                                                     <i class="fa-solid fa-screwdriver-wrench"></i>&nbsp;修復天氣 API
@@ -505,9 +507,6 @@
                                                     <i class="fa-solid fa-screwdriver-wrench"></i>&nbsp;手機端動畫及細節
                                                 </span>
                                                 <span class="uptext">
-                                                    <i class="fa-solid fa-screwdriver-wrench"></i>&nbsp;圖標更換為 Font
-                                                    Awesome</span>
-                                                <span class="uptext">
                                                     <i class="fa-solid fa-rotate-left"></i>
                                                     <a href="./old/" style="color:#efefef">返回舊版網址</a>
                                                 </span>
@@ -517,49 +516,42 @@
                                 </div>
                             </div>
                         </div>
-                        <!--Aplayer-->
-                        <div class="box-right">
-                            <div id="aplayer">
-                                <span>音樂播放器加載失敗</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
-            </div>
-        </main>
-        <!-- 版权信息 -->
-        <footer id="footer" class="fixed-bottom footer">
-            <div class="power">Copyright&nbsp;©&nbsp;<span id="power-year">2022</span>
-                <script>
-                    document.write(' - ' + (new Date()).getFullYear())
-                </script>&nbsp;<a href="https://chihlite.github.io/" id="power-text">Chi Hlite｜H</a>&nbsp;&amp;&nbsp;
-                <!-- 以下信息请不要修改哦 -->
-                Made&nbsp;⚙Modified from&nbsp;<a href="" target="_blank">imsyy</a>
-				🔒<a href="https://police.gov.taipei/">暫未備案</a>
-            </div>
-            <!-- 歌词显示 -->
-            <div id="lrc"></div>
-        </footer>
-    </section>
-    <!-- sw.js -->
-    <script>
-        if ("serviceWorker" in navigator) {
-            window.addEventListener("load", function () {
-                navigator.serviceWorker.register("sw.js");
-            });
-        }
-    </script>
-    <!-- noscript -->
-    <noscript>
-        <div class="noscript fixed-top">請開啟 JavaScript</div>
-    </noscript>
-    <!-- JS -->
-    <script type="text/javascript" src="static/js/main.js"></script>
-    <script type="text/javascript" src="static/js/js.cookie.js"></script>
-    <script type="text/javascript" src="static/js/set.js"></script>
-    <script type="text/javascript" src="static/js/time.js"></script>
-    <script type="text/javascript" src="static/js/bootstrap.min.js">
-    </script>
+            </main>
+            <!-- 版权信息 -->
+            <footer id="footer" class="fixed-bottom footer">
+                <div class="power">Copyright&nbsp;©&nbsp;<span id="power-year">2022</span>
+                    <script>
+                        document.write(' - ' + (new Date()).getFullYear())
+                    </script>&nbsp;<a href="https://chihlite.github.io/" id="power-text">Chi Hlite｜H</a>&nbsp;&amp;&nbsp;
+                    <!-- 以下信息请不要修改哦 -->
+                    Made&nbsp;⚙Modified from&nbsp;<a href="" target="_blank">imsyy</a>
+                    🔒<a href="https://police.gov.taipei/">暫未備案</a>
+                </div>
+                <!-- 歌词显示 -->
+                <div id="lrc"></div>
+            </footer>
+        </section>
+        <!-- sw.js -->
+        <script>
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", function () {
+                    navigator.serviceWorker.register("sw.js");
+                });
+            }
+        </script>
+        <!-- noscript -->
+        <noscript>
+            <div class="noscript fixed-top">請開啟 JavaScript</div>
+        </noscript>
+        <!-- JS -->
+        <script type="text/javascript" src="static/js/main.js"></script>
+        <script type="text/javascript" src="static/js/js.cookie.js"></script>
+        <script type="text/javascript" src="static/js/set.js"></script>
+        <script type="text/javascript" src="static/js/time.js"></script>
+        <script type="text/javascript" src="static/js/bootstrap.min.js">
+        </script>
 </body>
 
 </html>
