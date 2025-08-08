@@ -93,7 +93,7 @@ window.addEventListener(
 );
 
 setTimeout(function () {
-  $("#loading-text").html("字體及文件家仔可能需要一定時間呦");
+  $("#loading-text").html("字體及文件加載可能需要一定時間呦");
 }, 3000);
 
 // 新春灯笼 （ 需要时可取消注释 ）
